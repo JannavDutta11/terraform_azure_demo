@@ -1,4 +1,12 @@
 terraform {
+  cloud {
+    organization = "myterraform10"
+ 
+    workspaces {
+      name = "terraformdemo10"
+    }
+  }
+ 
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
@@ -12,6 +20,6 @@ provider "azurerm" {
 }
  
 resource "azurerm_resource_group" "rg" {
-  name     = "jd-hcp-rg"
+  name     = "jd-cli-hcp-rg"
   location = "East US"
 }
