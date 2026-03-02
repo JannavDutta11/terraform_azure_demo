@@ -1,25 +1,18 @@
 terraform {
-  cloud {
-    organization = "myterraform10"
- 
-    workspaces {
-      name = "terraformdemo10"
-    }
-  }
- 
   required_providers {
-    azurerm = {
-      source  = "hashicorp/azurerm"
-      version = "~> 3.0"
+    random = {
+      source  = "hashicorp/random"
+      version = "~> 3.5"
     }
   }
 }
  
-provider "azurerm" {
-  features {}
+provider "random" {}
+ 
+resource "random_pet" "name" {
+  length = 2
 }
  
-resource "azurerm_resource_group" "rg" {
-  name     = "jd-cli-hcp-rg"
-  location = "East US"
+output "pet_name" {
+  value = random_pet.name.id
 }
